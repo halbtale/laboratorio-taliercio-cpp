@@ -7,8 +7,10 @@ using namespace std;
 class Rational {
 public:
 	Rational() = default;
-	Rational(int n) : numerator{n}, denominator{1} {};
-	Rational(int num, int den) : numerator{num}, denominator{den} {};
+
+	explicit Rational(const int n) : numerator{n}, denominator{1} {};
+
+	Rational(const int num, const int den) : numerator{num}, denominator{den} {};
 	
 	int getNumerator() const {
 		return numerator;

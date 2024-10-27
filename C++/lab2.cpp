@@ -4,9 +4,9 @@
 using namespace std;
 
 int main() {
-	Rational r1 {1, 2};
-	Rational r2 {1};
-	Rational r3 {4, 2};
+	const Rational r1 {1, 2};
+	const Rational r2 {1};
+	const Rational r3 {4, 2};
 
 	cout << "r1: " << r1;
 	cout << "r2: " << r2;

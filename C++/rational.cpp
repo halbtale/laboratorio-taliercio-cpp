@@ -5,12 +5,7 @@ ostream& operator<<(ostream& stream, const Rational& rational) {
 	return stream;
 }
 
-Rational& Rational::operator=(const Rational& rational) {
-	numerator = rational.numerator;
-	denominator = rational.denominator;
-	
-	return *this;
-} 
+Rational& Rational::operator=(const Rational& rational) = default;
 
 Rational operator+(const Rational& r1, const Rational& r2) {
 	const int sumDenominator = r1.getDenominator() * r2.getDenominator();
@@ -19,11 +14,11 @@ Rational operator+(const Rational& r1, const Rational& r2) {
 	return Rational {sumNumerator, sumDenominator};
 }
 
-Rational operator+(int n1, const Rational& r2) {
+Rational operator+(const int n1, const Rational& r2) {
 	return Rational {n1} + r2;
 }
 
-Rational operator+(const Rational& r1, int n2) {
+Rational operator+(const Rational& r1, const int n2) {
 	return r1 + Rational {n2};
 }
 
