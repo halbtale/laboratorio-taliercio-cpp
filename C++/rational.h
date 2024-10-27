@@ -1,8 +1,8 @@
-#include <iostream>
-using namespace std;
-
 #ifndef RATIONAL
 #define RATIONAL
+
+#include <iostream>
+using namespace std;
 
 class Rational {
 public:
