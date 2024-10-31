@@ -45,6 +45,10 @@ void print_pointer(double* n) {
 	cout << *n << "\n";
 }
 
+void print_pointer(int* n) {
+	cout << *n << "\n";
+}
+
 void program3() {
 	int a = 10;
 	double b = 3.14;
@@ -52,9 +56,7 @@ void program3() {
 	print_reference(a);
 	print_reference(b);
 	
-	double aConverted = a;
-	
-	print_pointer(&aConverted);
+	print_pointer(&a);
 	print_pointer(&b);
 }
 
