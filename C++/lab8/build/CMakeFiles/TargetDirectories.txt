@@ -1,0 +1,3 @@
+/home/hulk/9/ah2101739/laboratorio-taliercio-cpp/C++/lab8/build/CMakeFiles/main.dir
+/home/hulk/9/ah2101739/laboratorio-taliercio-cpp/C++/lab8/build/CMakeFiles/edit_cache.dir
+/home/hulk/9/ah2101739/laboratorio-taliercio-cpp/C++/lab8/build/CMakeFiles/rebuild_cache.dir
