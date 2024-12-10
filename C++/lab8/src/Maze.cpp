@@ -3,7 +3,7 @@
 #include <iostream>
 #include <array>
 
-Maze::Maze(const std::string file_path) {
+Maze::Maze(const std::string& file_path) {
 	std::fstream fs;
 	fs.open(file_path);
 	
@@ -14,6 +14,15 @@ Maze::Maze(const std::string file_path) {
 	}
 	
 	fs.close();
+
+	const std::array<int, 2> start = find_start();
+
+	set_current_position(start[0], start[1]);
+
+	const std::array<int, 2> exit = find_exit();
+
+	_exit_x = exit[0];
+	_exit_y = exit[1];
 }
 
 bool Maze::is_wall(const int x, const int y) const {
@@ -40,6 +49,18 @@ std::array<int, 2> Maze::find(char c) const {
 	throw NotFoundException();
 }
 
+std::array<int, 2> Maze::get_current_position() const {
+	const std::array<int, 2> position = {_current_position_x, _current_position_y};
+	return position;
+}
+
+void Maze::set_current_position(const int x, const int y) {
+	if (is_wall(x, y)) throw InvalidMoveException();
+
+	_current_position_x = x;
+	_current_position_y = y;
+}
+
 std::array<int, 2> Maze::find_start() const {
 	return find('S');
 };
@@ -47,3 +68,7 @@ std::array<int, 2> Maze::find_start() const {
 std::array<int, 2> Maze::find_exit() const {
 	return find('E');
 };
+
+bool Maze::is_exit() const {
+	return _current_position_x == _exit_x && _current_position_y == _exit_y;
+}

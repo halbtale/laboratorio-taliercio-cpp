@@ -1,13 +1,12 @@
 #ifndef ROBOT_H
 #define ROBOT_H
+#include <Maze.h>
 
 class Robot {
-protected:
-	int _x;
-	int _y;
-	
+
 public:
-	virtual void move(const Maze& maze) = 0;
+	virtual void move(Maze& maze) = 0;
+	virtual ~Robot() = default;
 };
 
 #endif
