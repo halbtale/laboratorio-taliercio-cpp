@@ -5,25 +5,25 @@ void RightHandRuleRobot::move(Maze& maze) {
     bool is_valid_move = false;
 
     while (!is_valid_move) {
-        const int direction = (maze.get_current_position()[0] + maze.get_current_position()[1]) % 4; // ADD LOGIC
+        const int direction = _current_direction;
         try {
-            switch (direction) {
-                case 0:
-                    maze.set_current_position(current_position[0], current_position[1] - 1);
-                break;
-                case 1:
-                    maze.set_current_position(current_position[0] + 1, current_position[1]);
-                break;
-                case 2:
-                    maze.set_current_position(current_position[0], current_position[1] + 1);
-                break;
-                case 3:
-                    maze.set_current_position(current_position[0] - 1, current_position[1]);
-                break;
-                default:
-                    break;
-            }
+            const int new_x = current_position[0] + (direction == 1) - (direction == 3);
+            const int new_y = current_position[1] + (direction == 2) - (direction == 0);
+
+            maze.set_current_position(new_x, new_y);
             is_valid_move = true;
-        }catch (Maze::InvalidMoveException& e) {}
+        } catch (Maze::InvalidMoveException& e) {
+            _current_direction = (4 + (_current_direction - 1)) % 4;
+            _found_wall = true;
+        }
     }
+
+    if (_found_wall) {
+        const int right_x = current_position[0] + (_current_direction == 1) - (_current_direction == 3);
+        const int right_y = current_position[1] + (_current_direction == 2) - (_current_direction == 0);
+        if (!maze.is_wall(right_x, right_y)) {
+            _current_direction = (_current_direction + 1) % 4;
+        }
+    }
+
 }
