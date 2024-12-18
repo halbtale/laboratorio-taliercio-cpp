@@ -7,22 +7,10 @@ void RandomRobot::move(Maze& maze) {
     while (!is_valid_move) {
         const int direction = rand() % 4;
         try {
-            switch (direction) {
-                case 0:
-                    maze.set_current_position(current_position[0], current_position[1] - 1);
-                break;
-                case 1:
-                    maze.set_current_position(current_position[0] + 1, current_position[1]);
-                break;
-                case 2:
-                    maze.set_current_position(current_position[0], current_position[1] + 1);
-                break;
-                case 3:
-                    maze.set_current_position(current_position[0] - 1, current_position[1]);
-                break;
-                default:
-                    break;
-            }
+            const int new_x = current_position[0] + (direction == 1) - (direction == 3);
+            const int new_y = current_position[1] + (direction == 2) - (direction == 0);
+
+            maze.set_current_position(new_x, new_y);
             is_valid_move = true;
         }catch (Maze::InvalidMoveException& e) {}
     }
